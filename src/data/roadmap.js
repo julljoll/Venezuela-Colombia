@@ -17,7 +17,7 @@ export const META = {
   school: 'Universidad Nacional Experimental de los Llanos Occidentales "Rómulo Gallego" (UNELLEZ)',
   program: {
     name: 'Programa de Actualización en Derecho Colombiano',
-    institution: 'Universidad de Tadéo Lozano (UTadeo) — Educación Continua',
+    institution: 'Universidad Jorge E. Tadeo Lozano (UTadeo) (UTadeo) — Educación Continua',
     url: 'https://www.utadeo.edu.co/es/continuada/educacion-continua/53376/programa-de-actualizacion-en-derecho-colombiano',
     role: 'Estudio de complementación / nivelación académica exigido como sustento previo a la convalidación ante el Ministerio de Educación Nacional de Colombia (MEN).',
   },
