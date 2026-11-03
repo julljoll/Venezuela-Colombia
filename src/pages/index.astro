@@ -14,6 +14,7 @@ const toneMap = {
 const venMax = Math.max(...GROWTH_2026.map((g) => g.ven ?? 0));
 const infMax = Math.max(...INFLATION_2026.map((i) => i.value));
 const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
+const GROWTH_ROWS = GROWTH_2026.map((g) => ({ ...g, label: g.col !== null ? g.org + ' · CO' : g.org }));
 ---
 
 <Layout>
@@ -39,14 +40,23 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       </div>
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-medium">
-        <a href="#modelo" class="rounded-xl bg-gradient-to-r from-col-blue to-col-blue-bright px-5 py-2.5 font-bold text-white shadow-md shadow-col-blue/25 transition hover:brightness-110">Ir al simulador →</a>
-        <a href="#respuesta" class="rounded-xl border border-slate-300 bg-white px-5 py-2.5 font-bold text-slate-900 transition hover:bg-slate-50">Ver la respuesta directa</a>
+        <a href="#modelo" class="usa-button usa-button--primary !bg-col-blue !shadow-none hover:!bg-col-blue-bright !font-bold">Ir al simulador →</a>
+        <a href="#respuesta" class="usa-button usa-button--outline !border-slate-300 !text-slate-900 !font-bold hover:!bg-slate-50">Ver la respuesta directa</a>
       </div>
     </div>
   </section>
 
   {/* ===================== PASO 1 ===================== */}
   <Section step="1" id="punto-partida" title="El punto de partida: dos países en momentos distintos">
+    {/* Alerta USWDS: idea central del paso */}
+    <div class="usa-alert usa-alert--info margin-bottom-4">
+      <div class="usa-alert__body">
+        <h3 class="usa-alert__heading text-sm font-bold uppercase tracking-wide">Idea clave del paso</h3>
+        <p class="usa-alert__text text-sm leading-relaxed">
+          Colombia parte con una ventaja de <strong>2,4× en PIB por persona</strong>. Toda la simulación posterior mide cuánto tarda Venezuela en cerrar esa brecha.
+        </p>
+      </div>
+    </div>
     <div class="grid gap-4 md:grid-cols-3">
       {GDP_2025.map((c) => (
         <div class="card">
@@ -57,8 +67,13 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
         </div>
       ))}
     </div>
-    <div class="card mt-4 border-col-red-soft bg-col-red-mist !p-4 text-xs leading-relaxed text-[rgb(153,27,43)]">
-      <strong class="text-col-red">⚠ Advertencia:</strong> en Venezuela el tipo de cambio y la población son inciertos, así que la cifra nominal en dólares es un orden de magnitud, no un dato exacto. Aún falta el dato en PPA (poder adquisitivo) con fuente verificable.
+    {/* Alerta USWDS "warning": reemplaza el callout previo */}
+    <div class="usa-alert usa-alert--warning margin-top-4">
+      <div class="usa-alert__body">
+        <p class="usa-alert__text text-xs leading-relaxed">
+          <strong>Advertencia:</strong> en Venezuela el tipo de cambio y la población son inciertos, así que la cifra nominal en dólares es un orden de magnitud, no un dato exacto. Aún falta el dato en PPA (poder adquisitivo) con fuente verificable.
+        </p>
+      </div>
     </div>
   </Section>
 
@@ -74,19 +89,19 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
         <h3 class="mb-1 text-sm font-bold text-slate-900">Crecimiento del PIB 2026 (%) según fuente</h3>
         <p class="mb-4 text-[11px] text-slate-500"><span class="text-col-amber-deep">■</span> Venezuela &nbsp; <span class="text-col-blue-bright">■</span> Colombia</p>
         <div class="space-y-2.5">
-          {GROWTH_2026.map((g) => (
+          {GROWTH_ROWS.map((g) => (
             <div class="flex items-center gap-3 text-xs">
-              <span class="w-40 shrink-0 text-right text-slate-600">{g.org}{g.col !== null ? ' · CO' : ''}</span>
+              <span class="w-40 shrink-0 text-right text-slate-600">{g.label}</span>
               <div class="h-5 flex-1 overflow-hidden rounded-md bg-slate-100">
                 <div
-                  class={`flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900 ${g.col !== null ? 'bg-col-blue-bright' : 'bg-col-amber'}`}
+                  class={['flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900', g.col !== null ? 'bg-col-blue-bright' : 'bg-col-amber'].join(' ')}
                   style={{ width: barW(g.col ?? g.ven, venMax) }}
                 >
                   {(g.col ?? g.ven).toLocaleString('es-ES')}%{g.venNote ? ` (${g.venNote})` : ''}
                 </div>
               </div>
             </div>
-          ))}
+          ); })}
         </div>
         <p class="mt-4 text-[11px] leading-relaxed text-slate-500">Rango Venezuela: 4,0%–11% · Rango Colombia: 2,2%–2,6%. Se grafica Ecoanalítica con 11 (rango 10–12).</p>
       </div>
@@ -100,7 +115,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
               <span class="w-40 shrink-0 text-right text-slate-600">{i.org} · {i.country}</span>
               <div class="h-5 flex-1 overflow-hidden rounded-md bg-slate-100">
                 <div
-                  class={`flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900 ${i.country === 'Colombia' ? 'bg-col-blue-bright' : 'bg-col-red'}`}
+                  class={["flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900", i.country === 'Colombia' ? 'bg-col-blue-bright' : 'bg-col-red'].join(' ')}
                   style={{ width: barW(i.value, infMax) }}
                 >
                   ≈{i.value}%
@@ -109,8 +124,12 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
             </div>
           ))}
         </div>
-        <div class="mt-4 rounded-lg border border-col-red-soft bg-col-red-mist p-3 text-[11px] leading-relaxed text-[rgb(153,27,43)]">
-          Con inflación así, el crecimiento medido <strong>no se traduce en poder de compra</strong> para el hogar promedio.
+        <div class="usa-alert usa-alert--error margin-top-4 !py-2">
+          <div class="usa-alert__body">
+            <p class="usa-alert__text text-[11px] leading-relaxed">
+              Con inflación así, el crecimiento medido <strong>no se traduce en poder de compra</strong> para el hogar promedio.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -118,8 +137,15 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
 
   {/* ===================== PASO 3 ===================== */}
   <Section step="3" id="cara-a-cara" title="Comparación cara a cara">
+    {/* Etiqueta USWDS: los datos están fechados y con fuente */}
+    <ul class="usa-tag-group display-flex flex-wrap gap-1 margin-bottom-4 list-none padding-0">
+      <li><span class="usa-tag bg-col-blue-bright">Datos abril–octubre 2026</span></li>
+      <li><span class="usa-tag bg-col-amber-deep">Proyecciones marcadas como tales</span></li>
+      <li><span class="usa-tag bg-base-dark">Sin opinión política</span></li>
+    </ul>
     <div class="card overflow-x-auto !p-0">
       <table class="w-full min-w-[720px] border-collapse text-left text-xs sm:text-[13px]">
+        <caption class="sr-only">Comparación de indicadores entre Colombia y Venezuela, 2025–2026</caption>
         <thead>
           <tr class="border-b border-slate-200 bg-slate-50 text-slate-900">
             <th class="px-4 py-3 font-bold">Indicador</th>
@@ -151,10 +177,33 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
         </div>
       ))}
     </div>
-    <div class="card mt-4 border-col-blue-soft bg-col-blue-mist text-sm leading-relaxed text-slate-700">
-      Crecer 7% tras caer 80% es recuperar terreno, no igualar a nadie. Reconstruir la red eléctrica, el sistema escolar, el sistema de salud,
-      la confianza de inversionistas y el estado de derecho <strong class="text-slate-900">toma décadas y no sale en ninguna tasa de crecimiento</strong>.
-      Ningún modelo de abajo lo captura por completo.
+    <div class="usa-alert usa-alert--info margin-top-4">
+      <div class="usa-alert__body">
+        <p class="usa-alert__text text-sm leading-relaxed text-slate-700">
+          Crecer 7% tras caer 80% es recuperar terreno, no igualar a nadie. Reconstruir la red eléctrica, el sistema escolar, el sistema de salud,
+          la confianza de inversionistas y el estado de derecho <strong class="text-slate-900">toma décadas y no sale en ninguna tasa de crecimiento</strong>.
+          Ningún modelo de abajo lo captura por completo.
+        </p>
+      </div>
+    </div>
+
+    {/* Gráfico de barras USWDS: magnitudes del país que hay que reconstruir */}
+    <div class="margin-top-6">
+      <h3 class="font-caption font-body-lg text-base-dark margin-bottom-2">Indicadores sociales ENCOVI 2025 (Venezuela)</h3>
+      <ul class="ven-graph list-none padding-0 margin-0">
+        {RECONSTRUCTION.map((k) => (
+          <li class="margin-bottom-105">
+            <div class="display-flex flex-align-center gap-2">
+              <span class="ven-label w-14 shrink-0 font-body-xs text-bold text-center">{k.value}</span>
+              <div class="height-2 flex-fill rounded-md overflow-hidden bg-col-red-mist ring-1 ring-col-red-soft">
+                <div class="h-full rounded-md bg-gradient-to-r from-col-red to-col-red/70" style=`width:${(parseFloat(k.value.replace(',', '.')) / 68.5) * 100}%`}></div>
+              </div>
+            </div>
+            <p class="margin-top-05 font-body-xs text-gray-cool-70 leading-snug">{k.label} <span class="text-gray-cool-50">· {k.note}</span></p>
+          </li>
+        ))}
+      </ul>
+      <p class="font-body-3xs text-gray-cool-50 margin-top-1">Escala común: magnitud relativa al mayor indicador de hogares (68,5%, pobreza ENCOVI). El dato de «1,2 M» corresponde a personas fuera del sistema educativo; solo 64% de 3 a 24 años está escolarizado.</p>
     </div>
   </Section>
 
@@ -173,7 +222,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
             <button data-scenario={s.id} class="scenario-card card group cursor-pointer text-left transition hover:border-slate-300">
               <div class="flex items-start justify-between gap-2">
                 <h3 class="text-sm font-bold text-slate-900">{s.name}</h3>
-                <span class="mt-0.5 h-3 w-3 shrink-0 rounded-full ring-2 ring-slate-300" style={`background:${s.color}`}></span>
+                <span class="mt-0.5 h-3 w-3 shrink-0 rounded-full ring-2 ring-slate-300" style=`background:${s.color}`}></span>
               </div>
               <p class="mt-1 text-[11px] leading-snug text-slate-500">{s.desc}</p>
               <ul class="mt-2 space-y-0.5 text-[11px] text-slate-600">
@@ -335,17 +384,20 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       </div>
     </div>
 
-    <details class="card mt-4 cursor-pointer text-sm">
-      <summary class="font-bold text-slate-900">Preguntas frecuentes del modelo</summary>
-      <div class="mt-4 space-y-4">
-        {FAQ.map((f) => (
-          <div>
-            <p class="text-xs font-bold text-col-blue-bright">{f.q}</p>
-            <p class="mt-1 text-xs leading-relaxed text-slate-600">{f.a}</p>
+    {/* Acordeón USWDS para las preguntas frecuentes */}
+    <div class="usa-accordion usa-accordion--multiselectable margin-top-4" id="faq-acc" data-allow-multiple>
+      <h3 class="font-body-sm text-slate-900 font-bold margin-bottom-2">Preguntas frecuentes del modelo</h3>
+      {FAQ.map((f, i) => (
+        <>
+          <button type="button" class="usa-accordion__button" aria-expanded={(i === 0)} aria-controls={`faq-${i}`}>
+            <span>{f.q}</span>
+          </button>
+          <div id={`faq-${i}`} class="usa-accordion__content usa-prose"{hidden={i !== 0}}>
+            <p class="text-xs leading-relaxed text-slate-600">{f.a}</p>
           </div>
-        ))}
-      </div>
-    </details>
+        </>
+      ))}
+    </div>
 
     <p class="mt-6 text-[11px] leading-relaxed text-slate-500"><strong class="text-slate-600">Fuentes:</strong> {SOURCES}</p>
   </section>

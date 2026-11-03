@@ -1,0 +1,34 @@
+---
+// USWDS official "Government banner" component (identifier + banner), localized to Spanish.
+const { t } = Astro.props;
+---
+<div class="usa-banner" aria-label="Sitio de análisis independiente">
+  <div class="usa-accordion">
+    <header class="usa-banner__header">
+      <div class="usa-banner__inner">
+        <div class="grid-col-auto">
+          <img aria-hidden="true" class="usa-banner__header-flag" src="/uswds/img/us_flag_small.png" alt="" />
+        </div>
+        <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
+          <p class="usa-banner__header-text">Sitio de análisis de datos · no es un sitio oficial de gobierno</p>
+          <p class="usa-banner__header-action">Aquí está lo que puedes esperar</p>
+        </div>
+        <button type="button" class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner-default">
+          <span class="usa-banner__button-text">Aquí está lo que puedes esperar</span>
+        </button>
+      </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner-default" hidden>
+      <div class="grid-grid row-gap-lg">
+        <div class="grid-col-tablet:grid-col-6">
+          <h4 class="usa-banner__guidance-title">Los datos están fechados y con fuente</h4>
+          <p class="usa-banner__guidance-body">Este sitio muestra estadísticas públicas (FMI, Banco Mundial, ENCOVI/UCAB, Ecoanalítica, PNUD, ARF) fechadas entre abril y octubre de 2026.</p>
+        </div>
+        <div class="grid-col-tablet:grid-col-6">
+          <h4 class="usa-banner__guidance-title">Las proyecciones son supuestos del modelo</h4>
+          <p class="usa-banner__guidance-body">El simulador Monte Carlo y la “fricción institucional” usan supuestos propios, marcados como tales. No constituye asesoría personal, legal ni financiera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

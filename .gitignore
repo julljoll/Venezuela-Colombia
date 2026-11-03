@@ -1,4 +1,4 @@
-*.bundle
-.astro/
-dist/
 node_modules/
+dist/
+.svelte-kit/
+.output/
