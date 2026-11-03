@@ -7,9 +7,9 @@ import {
 } from '../data/data.js';
 
 const toneMap = {
-  teal: 'text-teal-300 ring-teal-400/30',
-  amber: 'text-amber-300 ring-amber-400/30',
-  rose: 'text-rose-300 ring-rose-400/30',
+  teal: 'text-teal-600',
+  amber: 'text-amber-600',
+  rose: 'text-rose-600',
 };
 const venMax = Math.max(...GROWTH_2026.map((g) => g.ven ?? 0));
 const infMax = Math.max(...INFLATION_2026.map((i) => i.value));
@@ -21,26 +21,26 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
   <section id="inicio" class="relative overflow-hidden">
     <div class="mx-auto max-w-6xl px-4 pb-14 pt-16 text-center sm:pt-24">
       <span class="badge mb-4">Guía paso a paso · Datos fechados y con fuente</span>
-      <h1 class="mx-auto max-w-4xl text-3xl font-black leading-tight tracking-tight text-white sm:text-5xl">
+      <h1 class="mx-auto max-w-4xl text-3xl font-black leading-tight tracking-tight text-slate-900 sm:text-5xl">
         ¿Cuántos años tardaría Venezuela en alcanzar el{' '}
-        <span class="bg-gradient-to-r from-teal-300 to-amber-300 bg-clip-text text-transparent">nivel de vida de Colombia</span>?
+        <span class="bg-gradient-to-r from-teal-600 to-amber-600 bg-clip-text text-transparent">nivel de vida de Colombia</span>?
       </h1>
-      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-400 sm:text-base">
+      <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
         Actualizado al {META.updated}. Los datos están fechados y con fuente; lo que es proyección o supuesto propio está marcado como tal.
         Aquí no se opina sobre gobiernos ni candidatos.
       </p>
 
-      <div class="card mx-auto mt-8 max-w-3xl border-amber-400/20 bg-amber-400/[0.05] text-left">
-        <p class="text-sm leading-relaxed text-slate-300">
-          <span class="font-bold text-amber-300">La idea central:</span> que el PIB de Venezuela crezca rápido no equivale a que el país esté reconstruido.
+      <div class="card mx-auto mt-8 max-w-3xl border-amber-200 bg-amber-50 text-left">
+        <p class="text-sm leading-relaxed text-slate-700">
+          <span class="font-bold text-amber-700">La idea central:</span> que el PIB de Venezuela crezca rápido no equivale a que el país esté reconstruido.
           Rebotar tras un colapso es más fácil que reconstruir instituciones, electricidad, escuelas y confianza.
-          Por eso el modelo tiene una <span class="font-semibold text-white">“perilla de fricción institucional”</span>.
+          Por eso el modelo tiene una <span class="font-semibold text-slate-900">“perilla de fricción institucional”</span>.
         </p>
       </div>
 
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-medium">
-        <a href="#modelo" class="rounded-xl bg-gradient-to-r from-teal-400 to-teal-500 px-5 py-2.5 font-bold text-slate-900 shadow-lg shadow-teal-500/20 transition hover:brightness-110">Ir al simulador →</a>
-        <a href="#respuesta" class="rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 font-bold text-white transition hover:bg-white/10">Ver la respuesta directa</a>
+        <a href="#modelo" class="rounded-xl bg-gradient-to-r from-teal-600 to-teal-500 px-5 py-2.5 font-bold text-white shadow-md shadow-teal-600/25 transition hover:brightness-110">Ir al simulador →</a>
+        <a href="#respuesta" class="rounded-xl border border-slate-300 bg-white px-5 py-2.5 font-bold text-slate-900 transition hover:bg-slate-50">Ver la respuesta directa</a>
       </div>
     </div>
   </section>
@@ -50,34 +50,34 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     <div class="grid gap-4 md:grid-cols-3">
       {GDP_2025.map((c) => (
         <div class="card">
-          <p class="text-xs font-medium uppercase tracking-wide text-slate-400">{c.label}</p>
+          <p class="text-xs font-medium uppercase tracking-wide text-slate-600">{c.label}</p>
           <p class={`mt-2 text-3xl font-black ${toneMap[c.tone]}`}>{c.value}</p>
-          <p class="mt-2 text-xs text-slate-400">Fuente: {c.source}</p>
+          <p class="mt-2 text-xs text-slate-600">Fuente: {c.source}</p>
           <p class="mt-1 text-[11px] italic text-slate-500">{c.note}</p>
         </div>
       ))}
     </div>
-    <div class="card mt-4 border-rose-400/20 bg-rose-400/[0.05] !p-4 text-xs leading-relaxed text-rose-200/90">
-      <strong class="text-rose-300">⚠ Advertencia:</strong> en Venezuela el tipo de cambio y la población son inciertos, así que la cifra nominal en dólares es un orden de magnitud, no un dato exacto. Aún falta el dato en PPA (poder adquisitivo) con fuente verificable.
+    <div class="card mt-4 border-rose-200 bg-rose-50 !p-4 text-xs leading-relaxed text-rose-800">
+      <strong class="text-rose-600">⚠ Advertencia:</strong> en Venezuela el tipo de cambio y la población son inciertos, así que la cifra nominal en dólares es un orden de magnitud, no un dato exacto. Aún falta el dato en PPA (poder adquisitivo) con fuente verificable.
     </div>
   </Section>
 
   {/* ===================== PASO 2 ===================== */}
   <Section step="2" id="crecimiento" title="Quién crece más… y cuánto se sabe realmente">
-    <p class="mb-6 max-w-3xl text-sm leading-relaxed text-slate-400">
+    <p class="mb-6 max-w-3xl text-sm leading-relaxed text-slate-600">
       Venezuela proyecta crecer mucho más que Colombia en 2026, pero las fuentes discrepan: de 4% (FMI, abril) a más de 10% (UCAB, Ecoanalítica).
-      <span class="font-semibold text-slate-200">Esa dispersión es en sí misma una señal de poca información fiable.</span>
+      <span class="font-semibold text-slate-800">Esa dispersión es en sí misma una señal de poca información fiable.</span>
     </p>
 
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="card">
-        <h3 class="mb-1 text-sm font-bold text-white">Crecimiento del PIB 2026 (%) según fuente</h3>
-        <p class="mb-4 text-[11px] text-slate-500"><span class="text-amber-300">■</span> Venezuela &nbsp; <span class="text-teal-300">■</span> Colombia</p>
+        <h3 class="mb-1 text-sm font-bold text-slate-900">Crecimiento del PIB 2026 (%) según fuente</h3>
+        <p class="mb-4 text-[11px] text-slate-500"><span class="text-amber-700">■</span> Venezuela &nbsp; <span class="text-teal-700">■</span> Colombia</p>
         <div class="space-y-2.5">
           {GROWTH_2026.map((g) => (
             <div class="flex items-center gap-3 text-xs">
-              <span class="w-40 shrink-0 text-right text-slate-400">{g.org}{g.col !== null ? ' · CO' : ''}</span>
-              <div class="h-5 flex-1 overflow-hidden rounded-md bg-white/5">
+              <span class="w-40 shrink-0 text-right text-slate-600">{g.org}{g.col !== null ? ' · CO' : ''}</span>
+              <div class="h-5 flex-1 overflow-hidden rounded-md bg-slate-100">
                 <div
                   class={`flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900 ${g.col !== null ? 'bg-teal-400' : 'bg-amber-400'}`}
                   style={{ width: barW(g.col ?? g.ven, venMax) }}
@@ -92,13 +92,13 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       </div>
 
       <div class="card">
-        <h3 class="mb-1 text-sm font-bold text-white">…y el precio de crecer: inflación 2026 (%)</h3>
+        <h3 class="mb-1 text-sm font-bold text-slate-900">…y el precio de crecer: inflación 2026 (%)</h3>
         <p class="mb-4 text-[11px] text-slate-500">Escala lineal sobre el máximo (≈468%)</p>
         <div class="space-y-2.5">
           {INFLATION_2026.map((i) => (
             <div class="flex items-center gap-3 text-xs">
-              <span class="w-40 shrink-0 text-right text-slate-400">{i.org} · {i.country}</span>
-              <div class="h-5 flex-1 overflow-hidden rounded-md bg-white/5">
+              <span class="w-40 shrink-0 text-right text-slate-600">{i.org} · {i.country}</span>
+              <div class="h-5 flex-1 overflow-hidden rounded-md bg-slate-100">
                 <div
                   class={`flex h-full items-center justify-end rounded-md px-1.5 font-bold text-slate-900 ${i.country === 'Colombia' ? 'bg-teal-400' : 'bg-rose-400'}`}
                   style={{ width: barW(i.value, infMax) }}
@@ -109,7 +109,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
             </div>
           ))}
         </div>
-        <div class="mt-4 rounded-lg border border-rose-400/20 bg-rose-400/5 p-3 text-[11px] leading-relaxed text-rose-200/90">
+        <div class="mt-4 rounded-lg border border-rose-200 bg-rose-50 p-3 text-[11px] leading-relaxed text-rose-800">
           Con inflación así, el crecimiento medido <strong>no se traduce en poder de compra</strong> para el hogar promedio.
         </div>
       </div>
@@ -121,7 +121,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     <div class="card overflow-x-auto !p-0">
       <table class="w-full min-w-[720px] border-collapse text-left text-xs sm:text-[13px]">
         <thead>
-          <tr class="border-b border-white/10 bg-white/[0.03] text-white">
+          <tr class="border-b border-slate-200 bg-slate-50 text-slate-900">
             <th class="px-4 py-3 font-bold">Indicador</th>
             <th class="px-4 py-3 font-bold"><span class="mr-1.5 inline-block h-2.5 w-2.5 rounded-full bg-teal-400"></span>Colombia</th>
             <th class="px-4 py-3 font-bold"><span class="mr-1.5 inline-block h-2.5 w-2.5 rounded-full bg-amber-400"></span>Venezuela</th>
@@ -129,10 +129,10 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
         </thead>
         <tbody>
           {COMPARISON.map((r, idx) => (
-            <tr class={`border-b border-white/5 align-top transition hover:bg-white/[0.04] ${idx % 2 ? 'bg-white/[0.015]' : ''}`}>
-              <td class="px-4 py-3 font-semibold text-slate-200">{r.indicator}</td>
-              <td class="px-4 py-3 leading-relaxed text-slate-400">{r.col || '—'}</td>
-              <td class="px-4 py-3 leading-relaxed text-slate-400">{r.ven || '—'}</td>
+            <tr class={`border-b border-slate-100 align-top transition hover:bg-slate-100 ${idx % 2 ? 'bg-slate-50/70' : ''}`}>
+              <td class="px-4 py-3 font-semibold text-slate-800">{r.indicator}</td>
+              <td class="px-4 py-3 leading-relaxed text-slate-600">{r.col || '—'}</td>
+              <td class="px-4 py-3 leading-relaxed text-slate-600">{r.ven || '—'}</td>
             </tr>
           ))}
         </tbody>
@@ -144,45 +144,45 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
   <Section step="4" id="reconstruccion" title="Lo que el PIB no mide: el país que hay que reconstruir">
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {RECONSTRUCTION.map((k) => (
-        <div class="card text-center transition hover:-translate-y-0.5 hover:border-amber-400/30">
-          <p class="bg-gradient-to-br from-amber-300 to-rose-400 bg-clip-text text-4xl font-black text-transparent">{k.value}</p>
-          <p class="mt-2 text-xs font-medium leading-snug text-slate-300">{k.label}</p>
+        <div class="card text-center transition hover:-translate-y-0.5 hover:border-amber-200">
+          <p class="bg-gradient-to-br from-amber-600 to-rose-600 bg-clip-text text-4xl font-black text-transparent">{k.value}</p>
+          <p class="mt-2 text-xs font-medium leading-snug text-slate-700">{k.label}</p>
           <p class="mt-1 text-[11px] text-slate-500">{k.note}</p>
         </div>
       ))}
     </div>
-    <div class="card mt-4 border-teal-400/20 bg-teal-400/[0.04] text-sm leading-relaxed text-slate-300">
+    <div class="card mt-4 border-teal-200 bg-teal-50 text-sm leading-relaxed text-slate-700">
       Crecer 7% tras caer 80% es recuperar terreno, no igualar a nadie. Reconstruir la red eléctrica, el sistema escolar, el sistema de salud,
-      la confianza de inversionistas y el estado de derecho <strong class="text-white">toma décadas y no sale en ninguna tasa de crecimiento</strong>.
+      la confianza de inversionistas y el estado de derecho <strong class="text-slate-900">toma décadas y no sale en ninguna tasa de crecimiento</strong>.
       Ningún modelo de abajo lo captura por completo.
     </div>
   </Section>
 
   {/* ===================== PASO 5: SIMULADOR ===================== */}
   <Section step="5" id="modelo" title="El modelo: ¿cuántos años hasta alcanzar a Colombia?">
-    <p class="mb-6 max-w-3xl text-sm leading-relaxed text-slate-400">
-      Se simulan <strong class="text-slate-200">5.000 trayectorias por escenario</strong>. Cada año, Venezuela y Colombia crecen con un valor aleatorio alrededor de un promedio.
+    <p class="mb-6 max-w-3xl text-sm leading-relaxed text-slate-600">
+      Se simulan <strong class="text-slate-800">5.000 trayectorias por escenario</strong>. Cada año, Venezuela y Colombia crecen con un valor aleatorio alrededor de un promedio.
       Se cuenta cuándo Venezuela alcanza el PIB por persona de Colombia (brecha inicial 2,4×).
-      <span class="badge ml-1 border-amber-400/30 text-amber-300">Supuestos propios, no datos</span>
+      <span class="badge ml-1 border-amber-200 text-amber-700">Supuestos propios, no datos</span>
     </p>
 
     <div class="grid gap-4 lg:grid-cols-3">
       <div class="lg:col-span-2">
         <div class="grid gap-3 sm:grid-cols-2">
           {SCENARIOS.map((s) => (
-            <button data-scenario={s.id} class="scenario-card card group cursor-pointer text-left transition hover:border-white/25">
+            <button data-scenario={s.id} class="scenario-card card group cursor-pointer text-left transition hover:border-slate-300">
               <div class="flex items-start justify-between gap-2">
-                <h3 class="text-sm font-bold text-white">{s.name}</h3>
-                <span class="mt-0.5 h-3 w-3 shrink-0 rounded-full ring-2 ring-white/20" style={`background:${s.color}`}></span>
+                <h3 class="text-sm font-bold text-slate-900">{s.name}</h3>
+                <span class="mt-0.5 h-3 w-3 shrink-0 rounded-full ring-2 ring-slate-300" style={`background:${s.color}`}></span>
               </div>
               <p class="mt-1 text-[11px] leading-snug text-slate-500">{s.desc}</p>
-              <ul class="mt-2 space-y-0.5 text-[11px] text-slate-400">
+              <ul class="mt-2 space-y-0.5 text-[11px] text-slate-600">
                 <li>Venezuela: {s.venPhases.map(([r, l]) => `${r}% ${l} años`).join(', ')}</li>
                 <li>Colombia: {s.colRate}% · volatilidad VEN ±{s.venVol} pp</li>
               </ul>
-              <div class="mt-3 rounded-lg bg-white/[0.04] px-3 py-2 text-xs">
-                <span class="text-slate-400">Mediana: </span>
-                <span class="years-median font-black text-white" data-for={s.id}>calculando…</span>
+              <div class="mt-3 rounded-lg bg-slate-100 px-3 py-2 text-xs">
+                <span class="text-slate-600">Mediana: </span>
+                <span class="years-median font-black text-slate-900" data-for={s.id}>calculando…</span>
                 <span class="years-range block text-[10px] text-slate-500" data-for={s.id}></span>
               </div>
             </button>
@@ -190,37 +190,37 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
         </div>
 
         <div class="card mt-4">
-          <label for="friction" class="flex flex-wrap items-center justify-between gap-2 text-sm font-bold text-white">
+          <label for="friction" class="flex flex-wrap items-center justify-between gap-2 text-sm font-bold text-slate-900">
             Fricción institucional
-            <span class="badge border-orange-400/30 text-orange-300">resta puntos porcentuales al crecimiento de Venezuela cada año</span>
+            <span class="badge border-orange-200 text-orange-700">resta puntos porcentuales al crecimiento de Venezuela cada año</span>
           </label>
           <input id="friction" type="range" min="0" max="3" step="0.25" value="1" class="mt-4 w-full" />
           <div class="mt-1 flex justify-between text-[10px] text-slate-500"><span>0 pp</span><span>1 pp (valor base del análisis)</span><span>3 pp</span></div>
-          <p class="mt-3 text-xs leading-relaxed text-slate-400">
-            Representa corrupción, apagones, fuga de capital humano, riesgo político. <span class="font-semibold text-white">Mueve la perilla y compara.</span>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            Representa corrupción, apagones, fuga de capital humano, riesgo político. <span class="font-semibold text-slate-900">Mueve la perilla y compara.</span>
           </p>
         </div>
       </div>
 
       <div class="card flex flex-col">
-        <h3 class="text-sm font-bold text-white">Probabilidad de alcanzar a Colombia en 80 años</h3>
+        <h3 class="text-sm font-bold text-slate-900">Probabilidad de alcanzar a Colombia en 80 años</h3>
         <p class="mt-1 text-[11px] text-slate-500">Según el escenario seleccionado arriba y la fricción actual.</p>
         <div class="my-6 grid place-items-center">
           <div class="relative h-40 w-40">
             <svg viewBox="0 0 120 120" class="h-full w-full -rotate-90">
-              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10" />
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" stroke-width="10" />
               <circle id="probArc" cx="60" cy="60" r="52" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" class="transition-all duration-500" />
             </svg>
             <div class="absolute inset-0 grid place-content-center text-center">
-              <span id="probPct" class="text-4xl font-black text-white">—</span>
+              <span id="probPct" class="text-4xl font-black text-slate-900">—</span>
               <span class="text-[11px] text-slate-500">de 5.000 simulaciones</span>
             </div>
           </div>
         </div>
         <dl class="mt-auto space-y-1.5 text-xs">
-          <div class="flex justify-between border-b border-white/5 pb-1"><dt class="text-slate-400">Mediana (si llega)</dt><dd id="statMedian" class="font-bold text-white">—</dd></div>
-          <div class="flex justify-between border-b border-white/5 pb-1"><dt class="text-slate-400">Rango P10–P90</dt><dd id="statRange" class="font-bold text-white">—</dd></div>
-          <div class="flex justify-between"><dt class="text-slate-400">No llega en 80 años</dt><dd id="statFail" class="font-bold text-rose-300">—</dd></div>
+          <div class="flex justify-between border-b border-slate-100 pb-1"><dt class="text-slate-600">Mediana (si llega)</dt><dd id="statMedian" class="font-bold text-slate-900">—</dd></div>
+          <div class="flex justify-between border-b border-slate-100 pb-1"><dt class="text-slate-600">Rango P10–P90</dt><dd id="statRange" class="font-bold text-slate-900">—</dd></div>
+          <div class="flex justify-between"><dt class="text-slate-600">No llega en 80 años</dt><dd id="statFail" class="font-bold text-rose-600">—</dd></div>
         </dl>
         <p class="mt-4 text-[10px] italic leading-snug text-slate-500">Cada movimiento de la perilla corre 5.000 simulaciones nuevas con semilla fresca: los números varían un poco en cada carga (la corrida de referencia del análisis usó 20.000).</p>
       </div>
@@ -231,34 +231,34 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
   <Section step="6" id="trayectoria" title="Una trayectoria en detalle (rango P10–P90)">
     <div class="card">
       <div class="mb-4 flex flex-wrap items-center gap-3">
-        <label for="pathScenario" class="text-xs font-semibold text-slate-400">Escenario:</label>
-        <select id="pathScenario" class="rounded-lg border border-white/15 bg-[#131c2e] px-3 py-2 text-sm font-semibold text-white outline-none focus:border-teal-400">
+        <label for="pathScenario" class="text-xs font-semibold text-slate-600">Escenario:</label>
+        <select id="pathScenario" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none focus:border-teal-400">
           {SCENARIOS.map((s) => <option value={s.id}>{s.name}</option>)}
         </select>
         <span class="text-[11px] text-slate-500">Se comparte la perilla de fricción del Paso 5.</span>
       </div>
-      <p class="mb-2 text-xs text-slate-400">Eje vertical: <strong class="text-white">PIB por persona de Venezuela como % del de Colombia</strong>. La banda cubre el 80% central de simulaciones. Cuando llega a 100%, igualó a Colombia.</p>
-      <div id="chartWrap" class="w-full overflow-hidden rounded-xl bg-white/[0.03] ring-1 ring-white/5">
+      <p class="mb-2 text-xs text-slate-600">Eje vertical: <strong class="text-slate-900">PIB por persona de Venezuela como % del de Colombia</strong>. La banda cubre el 80% central de simulaciones. Cuando llega a 100%, igualó a Colombia.</p>
+      <div id="chartWrap" class="w-full overflow-hidden rounded-xl bg-slate-50 ring-1 ring-slate-200">
         <canvas id="bandChart" class="block w-full" height="380"></canvas>
       </div>
-      <p id="pathReadout" class="mt-3 text-xs font-medium text-teal-300"></p>
+      <p id="pathReadout" class="mt-3 text-xs font-medium text-teal-700"></p>
     </div>
   </Section>
 
   {/* ===================== PASO 7: SENSIBILIDAD ===================== */}
   <Section step="7" id="sensibilidad" title="¿Y si Colombia también crece más? (sensibilidad)">
-    <p class="mb-4 max-w-3xl text-sm leading-relaxed text-slate-400">
-      Años hasta alcanzar a Colombia, con tasas constantes (brecha 2,4×). <span class="font-semibold text-slate-200">La meta se mueve: cuanto más rápido crece Colombia, más lejos queda.</span>
+    <p class="mb-4 max-w-3xl text-sm leading-relaxed text-slate-600">
+      Años hasta alcanzar a Colombia, con tasas constantes (brecha 2,4×). <span class="font-semibold text-slate-800">La meta se mueve: cuanto más rápido crece Colombia, más lejos queda.</span>
     </p>
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="card">
-        <h3 class="mb-2 text-sm font-bold text-white">Matriz de sensibilidad — sin fricción</h3>
+        <h3 class="mb-2 text-sm font-bold text-slate-900">Matriz de sensibilidad — sin fricción</h3>
         <div class="overflow-x-auto">
           <table class="w-full text-center text-[11px]" id="heatA"></table>
         </div>
       </div>
       <div class="card">
-        <h3 class="mb-2 text-sm font-bold text-white">Matriz de sensibilidad — con 1 pp de fricción</h3>
+        <h3 class="mb-2 text-sm font-bold text-slate-900">Matriz de sensibilidad — con 1 pp de fricción</h3>
         <div class="overflow-x-auto">
           <table class="w-full text-center text-[11px]" id="heatB"></table>
         </div>
@@ -271,13 +271,13 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
   <section id="conclusion" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-12">
     <div class="mb-6 flex items-center gap-3">
       <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-teal-400 to-amber-400 text-sm font-black text-slate-900">✓</span>
-      <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Qué se puede decir con honestidad</h2>
+      <h2 class="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">Qué se puede decir con honestidad</h2>
     </div>
     <div class="grid gap-4 sm:grid-cols-2">
       {CONCLUSIONS.map((c, i) => (
         <div class="card flex gap-4">
-          <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-teal-400/15 text-sm font-black text-teal-300 ring-1 ring-teal-400/30">{i + 1}</span>
-          <p class="text-sm leading-relaxed text-slate-300">{c}</p>
+          <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-teal-100 text-sm font-black text-teal-700 ring-1 ring-teal-200">{i + 1}</span>
+          <p class="text-sm leading-relaxed text-slate-700">{c}</p>
         </div>
       ))}
     </div>
@@ -285,69 +285,69 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
 
   {/* ===================== BOGOTÁ: ESPERAR O NO ===================== */}
   <section id="respuesta" class="mx-auto max-w-6xl scroll-mt-24 px-4 py-12">
-    <h2 class="text-xl font-bold tracking-tight text-white sm:text-2xl">Si quieres vivir el bienestar de Bogotá: ¿esperar o no esperar?</h2>
+    <h2 class="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">Si quieres vivir el bienestar de Bogotá: ¿esperar o no esperar?</h2>
     <div class="mt-6 grid gap-4 lg:grid-cols-2">
       <div class="card">
-        <h3 class="text-sm font-bold text-white">Ingreso por persona (lo que sí calcula el modelo)</h3>
-        <ul class="mt-3 space-y-3 text-xs leading-relaxed text-slate-300">
-          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-teal-400/15 px-2 py-1 font-black text-teal-300">≈28 años</span><span>“Estado 51” hipotético, sin fricción (rango 19–41). Es el caso más rápido del modelo.</span></li>
-          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-amber-400/15 px-2 py-1 font-black text-amber-300">≈50 años</span><span>Apertura petrolera, sin fricción (rango 34–73).</span></li>
-          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-orange-400/15 px-2 py-1 font-black text-orange-300">≈53 años</span><span>“Estado 51” con 1 pp de fricción (32 a más de 80).</span></li>
-          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-rose-400/15 px-2 py-1 font-black text-rose-300">No llega</span><span>Statu quo y escenario adverso. Con 1 pp de fricción, la apertura petrolera no llega en 80 años en ~87% de las simulaciones.</span></li>
+        <h3 class="text-sm font-bold text-slate-900">Ingreso por persona (lo que sí calcula el modelo)</h3>
+        <ul class="mt-3 space-y-3 text-xs leading-relaxed text-slate-700">
+          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-teal-100 px-2 py-1 font-black text-teal-700">≈28 años</span><span>“Estado 51” hipotético, sin fricción (rango 19–41). Es el caso más rápido del modelo.</span></li>
+          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-amber-100 px-2 py-1 font-black text-amber-700">≈50 años</span><span>Apertura petrolera, sin fricción (rango 34–73).</span></li>
+          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-orange-100 px-2 py-1 font-black text-orange-700">≈53 años</span><span>“Estado 51” con 1 pp de fricción (32 a más de 80).</span></li>
+          <li class="flex gap-3"><span class="shrink-0 rounded-md bg-rose-100 px-2 py-1 font-black text-rose-700">No llega</span><span>Statu quo y escenario adverso. Con 1 pp de fricción, la apertura petrolera no llega en 80 años en ~87% de las simulaciones.</span></li>
         </ul>
         <p class="mt-3 text-[10px] italic text-slate-500">Corrida de referencia: 20.000 simulaciones; los números varían en cada carga.</p>
       </div>
 
-      <div class="card border-teal-400/25 bg-teal-400/[0.05]">
-        <h3 class="text-sm font-bold text-white">Bienestar en todo sentido (servicios, seguridad, instituciones, salud, educación)</h3>
-        <p class="mt-3 text-sm leading-relaxed text-slate-300">
-          <strong class="text-teal-300">Este modelo no puede calcularlo.</strong> Lectura cualitativa, sin cálculo detrás: va <strong class="text-white">rezagado respecto al ingreso</strong>, porque reconstruir instituciones y capital humano es más lento que recuperar producción.
+      <div class="card border-teal-200 bg-teal-50">
+        <h3 class="text-sm font-bold text-slate-900">Bienestar en todo sentido (servicios, seguridad, instituciones, salud, educación)</h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          <strong class="text-teal-700">Este modelo no puede calcularlo.</strong> Lectura cualitativa, sin cálculo detrás: va <strong class="text-slate-900">rezagado respecto al ingreso</strong>, porque reconstruir instituciones y capital humano es más lento que recuperar producción.
         </p>
-        <div class="mt-4 rounded-xl border border-teal-400/30 bg-[#0b1220]/60 p-4">
-          <p class="text-[11px] font-semibold uppercase tracking-wide text-teal-300">Mejor de los casos para el mismo bienestar social que hoy tiene Bogotá</p>
-          <p class="mt-1 text-2xl font-black text-white">Unas 2 generaciones o más <span class="text-base font-bold text-slate-400">(≈40–60 años)</span></p>
-          <p class="mt-1 text-[11px] leading-snug text-slate-400">Y en el caso base puede que no ocurra durante la vida laboral de quien decide hoy.</p>
+        <div class="mt-4 rounded-xl border border-teal-200 bg-slate-50 p-4">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-teal-700">Mejor de los casos para el mismo bienestar social que hoy tiene Bogotá</p>
+          <p class="mt-1 text-2xl font-black text-slate-900">Unas 2 generaciones o más <span class="text-base font-bold text-slate-600">(≈40–60 años)</span></p>
+          <p class="mt-1 text-[11px] leading-snug text-slate-600">Y en el caso base puede que no ocurra durante la vida laboral de quien decide hoy.</p>
         </div>
       </div>
     </div>
 
-    <div class="card mt-4 border-amber-400/25 bg-amber-400/[0.05]">
-      <h3 class="text-sm font-bold text-amber-300">Panorama más claro</h3>
-      <p class="mt-2 text-sm leading-relaxed text-slate-300">
-        Para una persona que quiere ese nivel de vida durante su vida laboral, <strong class="text-white">el modelo no respalda planificar en torno a una espera</strong>.
+    <div class="card mt-4 border-amber-200 bg-amber-50">
+      <h3 class="text-sm font-bold text-amber-700">Panorama más claro</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-700">
+        Para una persona que quiere ese nivel de vida durante su vida laboral, <strong class="text-slate-900">el modelo no respalda planificar en torno a una espera</strong>.
         Incluso en el escenario más rápido (hipotético y no verificable), la convergencia de ingreso toma unos 30 años.
-        Esperar no es una estrategia con respaldo en estos números. Ni siquiera es una cuestión de “cuántos años”, sino de <strong class="text-white">si ocurre</strong>.
+        Esperar no es una estrategia con respaldo en estos números. Ni siquiera es una cuestión de “cuántos años”, sino de <strong class="text-slate-900">si ocurre</strong>.
       </p>
     </div>
 
     <div class="mt-4 grid gap-4 lg:grid-cols-2">
       <div class="card">
-        <h3 class="mb-3 text-sm font-bold text-white">Matices que sí importan</h3>
-        <ol class="list-decimal space-y-2 pl-5 text-xs leading-relaxed text-slate-400 marker:font-bold marker:text-teal-300">
+        <h3 class="mb-3 text-sm font-bold text-slate-900">Matices que sí importan</h3>
+        <ol class="list-decimal space-y-2 pl-5 text-xs leading-relaxed text-slate-600 marker:font-bold marker:text-teal-700">
           {NUANCES.map((n) => <li>{n}</li>)}
         </ol>
       </div>
       <div class="card">
-        <h3 class="mb-3 text-sm font-bold text-white">Limitaciones</h3>
-        <ul class="list-disc space-y-2 pl-5 text-xs leading-relaxed text-slate-400 marker:text-rose-400">
+        <h3 class="mb-3 text-sm font-bold text-slate-900">Limitaciones</h3>
+        <ul class="list-disc space-y-2 pl-5 text-xs leading-relaxed text-slate-600 marker:text-rose-500">
           {LIMITATIONS.map((l) => <li>{l}</li>)}
         </ul>
       </div>
     </div>
 
     <details class="card mt-4 cursor-pointer text-sm">
-      <summary class="font-bold text-white">Preguntas frecuentes del modelo</summary>
+      <summary class="font-bold text-slate-900">Preguntas frecuentes del modelo</summary>
       <div class="mt-4 space-y-4">
         {FAQ.map((f) => (
           <div>
-            <p class="text-xs font-bold text-teal-300">{f.q}</p>
-            <p class="mt-1 text-xs leading-relaxed text-slate-400">{f.a}</p>
+            <p class="text-xs font-bold text-teal-700">{f.q}</p>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600">{f.a}</p>
           </div>
         ))}
       </div>
     </details>
 
-    <p class="mt-6 text-[11px] leading-relaxed text-slate-500"><strong class="text-slate-400">Fuentes:</strong> {SOURCES}</p>
+    <p class="mt-6 text-[11px] leading-relaxed text-slate-500"><strong class="text-slate-600">Fuentes:</strong> {SOURCES}</p>
   </section>
 </Layout>
 
@@ -375,11 +375,11 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       const rng = document.querySelector(`.years-range[data-for="${s.id}"]`);
       if (r.median === null) {
         med.textContent = 'No llega en 80 años';
-        med.classList.remove('text-white'); med.classList.add('text-rose-300');
+        med.classList.remove('text-slate-900'); med.classList.add('text-rose-600');
         rng.textContent = `solo ${(r.reachPct * 100).toFixed(0)}% de las trayectorias converge`;
       } else {
         med.textContent = `≈ ${r.median} años`;
-        med.classList.remove('text-rose-300'); med.classList.add('text-white');
+        med.classList.remove('text-rose-600'); med.classList.add('text-slate-900');
         rng.textContent = `P10–P90: ${r.p10}–${r.p90} años · llega en ${(r.reachPct * 100).toFixed(0)}% de los casos`;
       }
     }
@@ -426,8 +426,8 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     const y = (v) => padT + ih - (Math.min(v, maxY) / maxY) * ih;
 
     // rejilla
-    ctx.strokeStyle = 'rgba(255,255,255,.06)';
-    ctx.fillStyle = 'rgba(148,163,184,.8)';
+    ctx.strokeStyle = 'rgba(15,23,42,.07)';
+    ctx.fillStyle = 'rgba(100,116,139,.9)';
     ctx.font = '10px ui-sans-serif, system-ui';
     for (let v = 0; v <= maxY; v += 20) {
       ctx.beginPath(); ctx.moveTo(padL, y(v)); ctx.lineTo(W - padR, y(v)); ctx.stroke();
@@ -438,11 +438,11 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       ctx.fillText(`${yr}`, x(yr) - 6, H - 12);
     }
     // línea 100%
-    ctx.strokeStyle = 'rgba(45,212,191,.7)';
+    ctx.strokeStyle = 'rgba(13,148,136,.7)';
     ctx.setLineDash([5, 4]);
     ctx.beginPath(); ctx.moveTo(padL, y(100)); ctx.lineTo(W - padR, y(100)); ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(45,212,191,.9)';
+    ctx.fillStyle = 'rgba(13,148,136,.95)';
     ctx.fillText('Igualdad con Colombia (100%)', padL + 6, y(100) - 5);
 
     // banda P10-P90
@@ -450,7 +450,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     paths.forEach((p, i) => { const px = x(i), py = y(p.p90 * 100); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
     for (let i = paths.length - 1; i >= 0; i--) ctx.lineTo(x(i), y(paths[i].p10 * 100));
     ctx.closePath();
-    ctx.fillStyle = s.color + '33';
+    ctx.fillStyle = s.color + '2e';
     ctx.fill();
 
     // percentiles
@@ -459,7 +459,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
       paths.forEach((p, i) => { const px = x(i), py = y(p[key] * 100); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
       ctx.strokeStyle = s.color + alpha; ctx.lineWidth = width; ctx.stroke();
     };
-    line('p10', 1.2, 'aa'); line('p90', 1.2, 'aa'); line('p50', 2.4, '');
+    line('p10', 1.2, 'cc'); line('p90', 1.2, 'cc'); line('p50', 2.4, '');
 
     // marca de cruce de la mediana
     const cross = paths.findIndex((p) => p.p50 >= 1);
@@ -467,6 +467,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     if (cross > 0) {
       ctx.beginPath(); ctx.arc(x(cross), y(100), 4.5, 0, 2 * Math.PI);
       ctx.fillStyle = '#fff'; ctx.fill();
+      ctx.strokeStyle = s.color; ctx.lineWidth = 2; ctx.stroke();
       readout.textContent = `La trayectoria mediana iguala a Colombia hacia el año ${cross} (≈ ${2026 + cross}). La banda muestra el rango P10–P90.`;
     } else {
       readout.textContent = 'Con estos supuestos, ni la trayectoria mediana alcanza el 100% dentro del horizonte de 80 años.';
@@ -481,14 +482,14 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
     const flat = vals.flat().filter((v) => v !== null);
     const mn = Math.min(...flat), mx = Math.max(...flat);
     const color = (v) => {
-      if (v === null) return ['#1e293b', '#64748b'];
+      if (v === null) return ['#f1f5f9', '#94a3b8'];
       const t = (v - mn) / (mx - mn || 1);
       const hue = 160 - t * 160; // verde -> rojo
-      return [`hsl(${hue} 65% 22%)`, `hsl(${hue} 80% 70%)`];
+      return [`hsl(${hue} 70% 92%)`, `hsl(${hue} 75% 28%)`];
     };
-    let html = `<thead><tr><th class="p-1.5 text-slate-400">VEN ↓ / COL →</th>${gCols.map((c) => `<th class="p-1.5 font-bold text-teal-300">${c}%</th>`).join('')}</tr></thead><tbody>`;
+    let html = `<thead><tr><th class="p-1.5 text-slate-600">VEN ↓ / COL →</th>${gCols.map((c) => `<th class="p-1.5 font-bold text-teal-700">${c}%</th>`).join('')}</tr></thead><tbody>`;
     vals.forEach((row, i) => {
-      html += `<tr><td class="p-1.5 text-left font-bold text-amber-300">${gVens[i]}%</td>`;
+      html += `<tr><td class="p-1.5 text-left font-bold text-amber-700">${gVens[i]}%</td>`;
       row.forEach((v) => {
         const [bg, fg] = color(v);
         html += `<td class="rounded m-0.5 p-1.5 font-bold" style="background:${bg};color:${fg}">${v === null ? '∞' : v}</td>`;
@@ -511,7 +512,7 @@ const barW = (v, max) => `${Math.max(1.5, (v / max) * 100)}%`;
   function paintCards() {
     document.querySelectorAll('.scenario-card').forEach((b) => {
       b.classList.toggle('ring-2', b.dataset.scenario === selected);
-      b.classList.toggle('ring-teal-400/60', b.dataset.scenario === selected);
+      b.classList.toggle('ring-teal-500/70', b.dataset.scenario === selected);
     });
   }
   frictionEl.addEventListener('input', renderSummary);
