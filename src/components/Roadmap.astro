@@ -101,13 +101,13 @@ const stepsByPhase = Object.fromEntries(PHASES.map((p) => [p.id, STEPS.filter((s
 <script>
   // Acordeón + checklist con persistencia local
   const KEY = 'ruta-convalidacion-v1';
-  const state = JSON.parse(localStorage.getItem(KEY) || '{"done":[],"open":null}');
+  const state = JSON.parse(localStorage.getItem(KEY) || '{"done":[],"open":null}') as { done: string[]; open: number | null };
 
   const save = () => localStorage.setItem(KEY, JSON.stringify(state));
 
-  document.querySelectorAll('.step-toggle').forEach((btn) => {
-    const card = btn.closest('.step-card');
-    const body = card.querySelector('.step-body');
+  document.querySelectorAll<HTMLElement>('.step-toggle').forEach((btn) => {
+    const card = btn.closest<HTMLElement>('.step-card')!;
+    const body = card.querySelector<HTMLElement>('.step-body')!;
     const n = Number(btn.dataset.step);
 
     if (state.open === n) { body.classList.remove('hidden'); btn.setAttribute('aria-expanded', 'true'); card.classList.add('ring-1','ring-white/20'); }
@@ -139,8 +139,10 @@ const stepsByPhase = Object.fromEntries(PHASES.map((p) => [p.id, STEPS.filter((s
     if (label) label.textContent = `${done}/${total} tareas · ${pct}%`;
   }
 
-  document.querySelectorAll('.task-check').forEach((cb) => {
-    const id = cb.closest('.step-card').dataset.step + '-' + Array.from(cb.closest('ul').children).indexOf(cb.parentElement.parentElement);
+  document.querySelectorAll<HTMLInputElement>('.task-check').forEach((cb) => {
+    const card = cb.closest<HTMLElement>('.step-card')!;
+    const list = cb.closest('ul')!;
+    const id = card.dataset.step + '-' + Array.from(list.children).indexOf(cb.parentElement!.parentElement!);
     cb.dataset.id = id;
     if (state.done.includes(id)) { cb.checked = true; }
     cb.addEventListener('change', () => {
