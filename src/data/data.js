@@ -128,7 +128,7 @@ export const SCENARIOS = [
     venVol: 1.5,
     colRate: 2.2,
     colVol: 0.5,
-    color: "#94a3b8",
+    color: "#64748b",
   },
   {
     id: "B",
@@ -138,7 +138,7 @@ export const SCENARIOS = [
     venVol: 2.0,
     colRate: 2.5,
     colVol: 0.5,
-    color: "#fbbf24",
+    color: "#d9a500",
   },
   {
     id: "C",
@@ -148,7 +148,7 @@ export const SCENARIOS = [
     venVol: 2.0,
     colRate: 2.5,
     colVol: 0.5,
-    color: "#2dd4bf",
+    color: "#0038a8",
   },
   {
     id: "D",
@@ -158,7 +158,7 @@ export const SCENARIOS = [
     venVol: 5.0,
     colRate: 2.2,
     colVol: 0.5,
-    color: "#fb7185",
+    color: "#cf142b",
   },
 ];
 

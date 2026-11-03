@@ -1,13 +1,41 @@
 @import "tailwindcss";
 
+/* ============================================================
+   PALETA — Banderas de Colombia y Venezuela (amarillo, azul, rojo)
+   Colores principales + variantes pastel para equilibrar
+   ============================================================ */
+@theme {
+  /* Amarillo (bandera, franja superior — el dominante) */
+  --color-col-amber: #fcd116;        /* amarillo bandera */
+  --color-col-amber-deep: #d9a500;   /* ámbar profundo para texto */
+  --color-col-amber-soft: #fef3c7;   /* pastel */
+  --color-col-amber-mist: #fffbe6;   /* pastel muy suave (fondos) */
+
+  /* Azul (bandera, franja media) */
+  --color-col-blue: #0038a8;         /* azul bandera */
+  --color-col-blue-bright: #1f5fd6;  /* variante legible en claro */
+  --color-col-blue-soft: #dbeafe;    /* pastel */
+  --color-col-blue-mist: #eff6ff;    /* pastel muy suave */
+
+  /* Rojo (bandera, franja inferior) */
+  --color-col-red: #cf142b;          /* rojo bandera */
+  --color-col-red-soft: #fee2e2;     /* pastel */
+  --color-col-red-mist: #fff1f2;     /* pastel muy suave */
+
+  /* Venezuela como país = acento rojo; Colombia = azul */
+  --color-venezuela: var(--color-col-red);
+  --color-colombia: var(--color-col-blue-bright);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(20, 184, 166, 0.07), transparent 60%),
-    radial-gradient(900px 500px at -10% 20%, rgba(245, 158, 11, 0.06), transparent 60%),
+    radial-gradient(1200px 600px at 80% -10%, rgba(252, 209, 22, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(0, 56, 168, 0.06), transparent 60%),
+    radial-gradient(700px 400px at 50% 110%, rgba(207, 20, 43, 0.05), transparent 60%),
     #f8fafc;
 }
 
@@ -39,7 +67,7 @@ input[type="range"] {
   appearance: none;
   height: 6px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #f59e0b, #ea580c);
+  background: linear-gradient(90deg, #fcd116, #cf142b);
   outline: none;
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -49,7 +77,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 22px;
   border-radius: 9999px;
   background: #fff;
-  border: 3px solid #ea580c;
+  border: 3px solid #0038a8;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
 }
@@ -58,6 +86,15 @@ input[type="range"]::-moz-range-thumb {
   height: 22px;
   border-radius: 9999px;
   background: #fff;
-  border: 3px solid #ea580c;
+  border: 3px solid #0038a8;
   cursor: pointer;
+}
+
+/* Barra tricolor sutil (bandera) bajo el header */
+.tricolor-bar {
+  height: 3px;
+  background: linear-gradient(90deg,
+    #fcd116 0%, #fcd116 50%,
+    #0038a8 50%, #0038a8 75%,
+    #cf142b 75%, #cf142b 100%);
 }
