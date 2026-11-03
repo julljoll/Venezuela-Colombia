@@ -157,7 +157,7 @@ const stepsByPhase = Object.fromEntries(PHASES.map((p) => [p.id, STEPS.filter((s
   const resetBtn = document.getElementById('reset-progress');
   if (resetBtn) resetBtn.addEventListener('click', () => {
     state.done = []; state.open = null; save();
-    document.querySelectorAll('.task-check').forEach((cb) => (cb.checked = false));
+    document.querySelectorAll<HTMLInputElement>('.task-check').forEach((cb) => (cb.checked = false));
     document.querySelectorAll('.step-body').forEach((b) => b.classList.add('hidden'));
     refreshProgress();
   });
