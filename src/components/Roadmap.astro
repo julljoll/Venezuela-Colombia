@@ -1,0 +1,162 @@
+---
+import { STEPS, PHASES } from '../data/roadmap.js';
+
+const colorMap = {
+  sky: 'from-sky-400 to-cyan-300 text-sky-200',
+  violet: 'from-violet-400 to-fuchsia-300 text-violet-200',
+  emerald: 'from-emerald-400 to-teal-300 text-emerald-200',
+  amber: 'from-amber-400 to-yellow-300 text-amber-200',
+  rose: 'from-rose-400 to-pink-300 text-rose-200',
+};
+
+const riskLabel = { low: 'Bajo', medium: 'Medio', high: 'Alto' };
+const riskClass = {
+  low: 'bg-emerald-500/10 text-emerald-300 ring-emerald-400/30',
+  medium: 'bg-amber-500/10 text-amber-300 ring-amber-400/30',
+  high: 'bg-rose-500/10 text-rose-300 ring-rose-400/30',
+};
+
+const stepsByPhase = Object.fromEntries(PHASES.map((p) => [p.id, STEPS.filter((s) => s.phaseId === p.id)]));
+---
+
+<div id="app-steps" class="space-y-10">
+  {PHASES.map((phase) => {
+    const list = stepsByPhase[phase.id] ?? [];
+    if (!list.length) return null;
+    const grad = colorMap[phase.color];
+    return (
+      <section class="relative pl-8 sm:pl-10">
+        {/* línea vertical de la fase */}
+        <div class:list={['absolute left-3 top-2 bottom-2 w-0.5 rounded bg-gradient-to-b sm:left-4', grad]}></div>
+        <div class:list={['absolute -left-0.5 top-0 grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br text-[10px] font-black text-slate-900 ring-4 ring-[#0b1220] sm:left-0.5', grad]}>
+          {phase.short.replace(/\D/g, '') || '★'}
+        </div>
+        <header class="mb-5">
+          <span class:list={['badge mb-2 ring-1 ring-white/10']}>{phase.short} · {phase.duration}</span>
+          <h3 class="text-lg font-bold tracking-tight text-white sm:text-xl">{phase.title}</h3>
+          <p class="mt-1 max-w-3xl text-sm leading-relaxed text-slate-400">{phase.goal}</p>
+        </header>
+
+        <ol class="grid gap-4">
+          {list.map((step) => (
+            <li
+              class="card step-card group relative !p-0 overflow-hidden"
+              data-step={step.n}
+            >
+              <button
+                type="button"
+                class="step-toggle flex w-full items-start gap-4 p-5 text-left"
+                aria-expanded="false"
+                data-step={step.n}
+              >
+                <span class:list={['grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br text-sm font-black text-slate-900', grad]}>
+                  {step.n}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-base font-bold leading-snug text-white">{step.title}</span>
+                  <span class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400">
+                    <span>⏱ {step.time}</span>
+                    <span>💰 {step.cost}</span>
+                    <span class:list={['rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ring-1', riskClass[step.risk]]}>
+                      Riesgo: {riskLabel[step.risk]}
+                    </span>
+                  </span>
+                </span>
+                <svg class="chev mt-1 h-5 w-5 shrink-0 text-slate-500 transition group-hover:text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+              </button>
+
+              <div class="step-body hidden px-5 pb-5">
+                <p class="mb-4 text-sm leading-relaxed text-slate-300">{step.detail}</p>
+
+                <ul class="mb-4 space-y-2">
+                  {step.tasks.map((task) => (
+                    <li class="flex items-start gap-3 rounded-lg bg-white/[0.03] p-2.5 ring-1 ring-white/5">
+                      <label class="flex cursor-pointer items-start gap-3">
+                        <input type="checkbox" class="task-check mt-0.5 h-4 w-4 accent-teal-400" />
+                        <span class="text-sm leading-snug text-slate-300">{task}</span>
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+
+                {step.url && (
+                  <a href={step.url} target="_blank" rel="noopener noreferrer"
+                     class="mb-4 inline-flex items-center gap-2 rounded-lg bg-violet-500/15 px-3 py-2 text-sm font-semibold text-violet-200 ring-1 ring-violet-400/30 transition hover:bg-violet-500/25">
+                    Ver ficha oficial del programa en UTadeo →
+                  </a>
+                )}
+
+                <div class="rounded-lg border-l-2 border-amber-400/60 bg-amber-400/[0.06] p-3 text-xs leading-relaxed text-amber-100/90">
+                  <span class="font-bold text-amber-300">Tip práctico:</span> {step.tip}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    );
+  })}
+</div>
+
+<script>
+  // Acordeón + checklist con persistencia local
+  const KEY = 'ruta-convalidacion-v1';
+  const state = JSON.parse(localStorage.getItem(KEY) || '{"done":[],"open":null}');
+
+  const save = () => localStorage.setItem(KEY, JSON.stringify(state));
+
+  document.querySelectorAll('.step-toggle').forEach((btn) => {
+    const card = btn.closest('.step-card');
+    const body = card.querySelector('.step-body');
+    const n = Number(btn.dataset.step);
+
+    if (state.open === n) { body.classList.remove('hidden'); btn.setAttribute('aria-expanded', 'true'); card.classList.add('ring-1','ring-white/20'); }
+
+    btn.addEventListener('click', () => {
+      const isOpen = !body.classList.contains('hidden');
+      document.querySelectorAll('.step-body').forEach((b) => b.classList.add('hidden'));
+      document.querySelectorAll('.step-toggle').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.step-card').forEach((c) => c.classList.remove('ring-1','ring-white/20'));
+      if (!isOpen) {
+        body.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        card.classList.add('ring-1','ring-white/20');
+        state.open = n;
+      } else {
+        state.open = null;
+      }
+      save();
+    });
+  });
+
+  function refreshProgress() {
+    const total = document.querySelectorAll('.task-check').length;
+    const done = document.querySelectorAll('.task-check:checked').length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const bar = document.getElementById('progress-bar');
+    const label = document.getElementById('progress-label');
+    if (bar) bar.style.width = pct + '%';
+    if (label) label.textContent = `${done}/${total} tareas · ${pct}%`;
+  }
+
+  document.querySelectorAll('.task-check').forEach((cb) => {
+    const id = cb.closest('.step-card').dataset.step + '-' + Array.from(cb.closest('ul').children).indexOf(cb.parentElement.parentElement);
+    cb.dataset.id = id;
+    if (state.done.includes(id)) { cb.checked = true; }
+    cb.addEventListener('change', () => {
+      if (cb.checked) state.done.push(id); else state.done = state.done.filter((x) => x !== id);
+      save();
+      refreshProgress();
+    });
+  });
+
+  refreshProgress();
+
+  const resetBtn = document.getElementById('reset-progress');
+  if (resetBtn) resetBtn.addEventListener('click', () => {
+    state.done = []; state.open = null; save();
+    document.querySelectorAll('.task-check').forEach((cb) => (cb.checked = false));
+    document.querySelectorAll('.step-body').forEach((b) => b.classList.add('hidden'));
+    refreshProgress();
+  });
+</script>

@@ -1,1 +1,5 @@
 *.bundle
+
+.astro/
+dist/
+node_modules/
