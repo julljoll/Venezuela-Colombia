@@ -1,0 +1,90 @@
+---
+import GovBanner from '../components/GovBanner.astro';
+const nav = [
+  { href: '#punto-partida', label: 'Punto de partida' },
+  { href: '#crecimiento', label: 'Crecimiento e inflación' },
+  { href: '#cara-a-cara', label: 'Cara a cara' },
+  { href: '#reconstruccion', label: 'Más allá del PIB' },
+  { href: '#modelo', label: 'Simulador' },
+  { href: '#trayectoria', label: 'Trayectoria' },
+  { href: '#sensibilidad', label: 'Sensibilidad' },
+  { href: '#conclusion', label: 'Conclusión' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Cuántos años tardaría Venezuela en alcanzar el nivel de vida de Colombia? · Análisis 2026</title>
+    <meta name="description" content="Visualización interactiva del análisis estadístico sobre convergencia económica Venezuela–Colombia: PIB per cápita, crecimiento, inflación, simulación Monte Carlo y fricción institucional." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+    <!-- U.S. Web Design System (uswds.gov) — estilos base del design system -->
+    <link rel="stylesheet" href="/uswds/uswds.min.css" />
+  </head>
+  <body class="usa-app min-h-screen text-slate-700 antialiased selection:bg-col-amber-soft/60">
+    <a class="usa-skipnav" href="#contenido">Saltar al contenido principal</a>
+
+    <GovBanner />
+
+    <div class="sticky top-0 z-40 w-full shadow-[0_1px_0_rgba(0,0,0,0.08)]">
+      <header class="usa-header usa-header--basic bg-white">
+        <div class="usa-nav-container mx-auto !max-w-6xl">
+          <div class="usa-navbar">
+            <div class="usa-logo margin-bottom-1 margin-top-1" id="basic-logo">
+              <em class="usa-logo__text !font-black !text-base leading-tight">
+                <a href="#inicio" title="Inicio" class="!text-ink">Venezuela → Colombia</a>
+              </em>
+            </div>
+            <button type="button" class="usa-menu-btn">Menú</button>
+          </div>
+          <nav aria-label="Navegación primaria" class="usa-nav">
+            <button type="button" class="usa-nav__close">
+              <img src="/uswds/img/usa-icons/close.svg" role="img" alt="Cerrar el menú" />
+            </button>
+            <ul class="usa-nav__primary usa-accordion">
+              {nav.map((n, i) => (
+                <li class="usa-nav__primary-item">
+                  <a href={n.href} class="usa-nav__link"><span>{i < 7 ? `Paso ${i + 1} · ${n.label}` : n.label}</span></a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="tricolor-bar" aria-hidden="true"></div>
+    </div>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <footer class="usa-footer usa-footer--slim mt-16 border-t border-slate-200">
+      <div class="grid-container usa-footer__return-to-top mx-auto max-w-6xl px-4">
+        <a href="#inicio" class="text-primary-vivid font-semibold">↑ Volver arriba</a>
+      </div>
+      <div class="usa-footer__primary-section bg-base-lightest">
+        <div class="grid-container mx-auto max-w-6xl px-4 py-6">
+          <p class="usa-footer__primary-link text-ink font-bold margin-bottom-1">Acerca de este análisis</p>
+          <p class="measure-none text-sm leading-relaxed text-gray-cool-60">
+            Análisis con datos fechados (abril–octubre 2026): FMI, Banco Mundial, Comité Autónomo de la Regla Fiscal, PNUD, UCAB (ENCOVI 2025), Ecoanalítica, OPEP y BCV.
+            Las proyecciones por escenario y la “fricción institucional” son supuestos propios del modelo, no datos oficiales.
+            Página informativa: no constituye asesoría personal, legal ni financiera.
+          </p>
+          <p class="margin-top-2 text-xs text-gray-cool-50">
+            Interfaz construida con el <a class="usa-link" href="https://github.com/uswds/uswds" rel="noopener noreferrer" target="_blank">U.S. Web Design System (USWDS)</a>, Astro y Tailwind CSS.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS del design system: acordeones (banner gubernamental) y navegación responsive -->
+    <script src="/uswds/js/uswds-init.min.js"></script>
+    <script src="/uswds/js/uswds.min.js"></script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

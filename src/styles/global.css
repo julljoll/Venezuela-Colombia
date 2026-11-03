@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ============================================================
+   PALETA — Banderas de Colombia y Venezuela (amarillo, azul, rojo)
+   Colores principales + variantes pastel para equilibrar
+   ============================================================ */
+@theme {
+  /* Amarillo (bandera, franja superior — el dominante) */
+  --color-col-amber: #fcd116;        /* amarillo bandera */
+  --color-col-amber-deep: #d9a500;   /* ámbar profundo para texto */
+  --color-col-amber-soft: #fef3c7;   /* pastel */
+  --color-col-amber-mist: #fffbe6;   /* pastel muy suave (fondos) */
+
+  /* Azul (bandera, franja media) */
+  --color-col-blue: #0038a8;         /* azul bandera */
+  --color-col-blue-bright: #1f5fd6;  /* variante legible en claro */
+  --color-col-blue-soft: #dbeafe;    /* pastel */
+  --color-col-blue-mist: #eff6ff;    /* pastel muy suave */
+
+  /* Rojo (bandera, franja inferior) */
+  --color-col-red: #cf142b;          /* rojo bandera */
+  --color-col-red-soft: #fee2e2;     /* pastel */
+  --color-col-red-mist: #fff1f2;     /* pastel muy suave */
+
+  /* Venezuela como país = acento rojo; Colombia = azul */
+  --color-venezuela: var(--color-col-red);
+  --color-colombia: var(--color-col-blue-bright);
+
+  /* Tipografía del design system USWDS (Public Sans con fallbacks) */
+  --font-sans: "Public Sans", "Source Sans Pro", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ===== Ajustes de convivencia entre USWDS y Tailwind ===== */
+usa-banner, .usa-banner { background: #fff; }
+.usa-skipnav:focus { z-index: 100; }
+/* Evitar que la rejilla de USWDS herede anchos fijos dentro de contenedores propios */
+.grid-container { max-width: none; }
+/* Botones nativos no deseados en inputs range ya estilizados */
+input[type="range"] { accent-color: var(--color-col-blue); }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(252, 209, 22, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(0, 56, 168, 0.06), transparent 60%),
+    radial-gradient(700px 400px at 50% 110%, rgba(207, 20, 43, 0.05), transparent 60%),
+    #f8fafc;
+}
+
+.card {
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0.125rem 0.625rem;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  color: #475569;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #fcd116, #cf142b);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid #0038a8;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid #0038a8;
+  cursor: pointer;
+}
+
+/* Barra tricolor sutil (bandera) bajo el header */
+.tricolor-bar {
+  height: 3px;
+  background: linear-gradient(90deg,
+    #fcd116 0%, #fcd116 50%,
+    #0038a8 50%, #0038a8 75%,
+    #cf142b 75%, #cf142b 100%);
+}

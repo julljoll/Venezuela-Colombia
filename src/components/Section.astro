@@ -1,0 +1,11 @@
+---
+const { step, title, intro } = Astro.props;
+---
+<section id={Astro.props.id} class="mx-auto max-w-6xl scroll-mt-24 px-4 py-12">
+  <div class="mb-6 flex items-center gap-3">
+    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-col-amber-mist to-col-blue-mist text-sm font-black text-col-blue-bright ring-1 ring-slate-200">{step}</span>
+    <h2 class="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">{title}</h2>
+  </div>
+  {intro && <p class="mb-6 max-w-3xl text-sm leading-relaxed text-slate-600"><slot name="intro" >{intro}</slot></p>}
+  <slot />
+</section>
